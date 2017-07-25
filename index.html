@@ -1,0 +1,39 @@
+<<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Slack Hooks Testing</title>
+</head>
+<body>
+
+<p>
+<input type="text" id="channel" value="#integrationtest" size="50" />
+</p>
+
+<p>
+<button onclick="kuduSuccess()">
+POST /kudu success
+</button>
+<button onclick="kuduFailure()">
+POST /kudu failure
+</button>
+</p>
+
+<script type="text/javascript">
+function kuduSuccess() {
+    send('/kudu', )
+}
+function send(path, body) {
+    var channel = document.getElementById('channel').value;
+    return fetch(path + '?channel=' + channel, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    });
+}
+</script>
+</body>
+</html>

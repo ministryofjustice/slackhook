@@ -1,3 +1,5 @@
+const config = require('./config');
+
 var https                   = require('https');
 var url                     = require('url');
 var slackHookRequestOptions = getSlackHookRequestOptions();
@@ -5,7 +7,7 @@ module.exports.sendToSlack  = sendToSlack;
 
 function getSlackHookRequestOptions()
 {
-    var hookUri     =   url.parse(process.env.slackhookuri);
+    var hookUri     =   url.parse(config.slack_hook_uri);
     return {
         host:       hookUri.hostname,
         port:       hookUri.port,
