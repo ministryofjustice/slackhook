@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,8 @@
 <body>
 
 <p>
-<input type="text" id="channel" value="#integrationtest" size="50" />
+Channel
+<input type="text" id="channel" value="#integrationtest" />
 </p>
 
 <p>
@@ -22,11 +23,44 @@ POST /kudu failure
 
 <script type="text/javascript">
 function kuduSuccess() {
-    send('/kudu', )
+    send('/kudu', {
+      "id": "2bdc42572263361fef1a3334c562be57dfb06c27",
+      "status": "success",
+      "statusText": "",
+      "authorEmail": "test@test.com",
+      "author": "John Doe",
+      "message": "Epic new feature!",
+      "progress": "",
+      "deployer": "",
+      "receivedTime": "2015-06-11T09:58:46.9983824Z",
+      "startTime": "2015-06-11T10:39:02.1322211Z",
+      "endTime": "2015-06-11T10:39:07.555094Z",
+      "lastSuccessEndTime": "2015-06-11T10:39:07.555094Z",
+      "complete": true,
+      "siteName": "azure-dummy-site"
+    });
+}
+function kuduFailure() {
+    send('/kudu', {
+      "id": "2bdc42572263361fef1a3334c562be57dfb06c27",
+      "status": "failure",
+      "statusText": "",
+      "authorEmail": "test@test.com",
+      "author": "John Doe",
+      "message": "Epic failure!",
+      "progress": "",
+      "deployer": "",
+      "receivedTime": "2015-06-11T09:58:46.9983824Z",
+      "startTime": "2015-06-11T10:39:02.1322211Z",
+      "endTime": "2015-06-11T10:39:07.555094Z",
+      "lastSuccessEndTime": "2015-06-11T10:39:07.555094Z",
+      "complete": false,
+      "siteName": "azure-dummy-site"
+    });
 }
 function send(path, body) {
     var channel = document.getElementById('channel').value;
-    return fetch(path + '?channel=' + channel, {
+    return fetch(path + '?channel=' + encodeURIComponent(channel), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
