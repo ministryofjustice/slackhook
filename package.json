@@ -12,14 +12,12 @@
     "url": "https://github.com/noms-digital-studio/slackhook/issues"
   },
   "homepage": "https://github.com/noms-digital-studio/slackhook#readme",
-  "engines": {
-    "node": "^8.1.4"
-  },
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "morgan": "^1.8.2",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
     "prettier": "^1.5.3"

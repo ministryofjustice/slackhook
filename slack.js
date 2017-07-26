@@ -1,4 +1,4 @@
-const { promisify } = require("util");
+const promisify = require("util.promisify");
 
 const request = promisify(require("request"));
 
