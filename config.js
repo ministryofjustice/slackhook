@@ -1,5 +1,5 @@
 module.exports = {
-  port: getenv("PORT") || 1337,
+  port: getenv("PORT", 1337),
   slack_hook_uri: getenv("SLACK_WEBHOOK"),
   keyvault: {
     uri: getenv("KEYVAULT_URI"),
@@ -7,14 +7,17 @@ module.exports = {
     client_id: getenv("KEYVAULT_CLIENT_ID"),
     client_secret: getenv("KEYVAULT_CLIENT_SECRET")
   },
-  local_users: getenv("LOCAL_USERS", parseUsers)
+  local_users: parseUsers(getenv("LOCAL_USERS", ""))
 };
 
-function getenv(name, coerce = x => x) {
-  if (name in process.env) {
-    return coerce(process.env[name]);
+function getenv(name, fallback) {
+  if (name in process.env && process.env[name]) {
+    return process.env[name];
   }
-  return null;
+  if (fallback) {
+    return fallback;
+  }
+  throw new Error(`Missing ${name} environment variable`);
 }
 
 function parseUsers(usersString) {

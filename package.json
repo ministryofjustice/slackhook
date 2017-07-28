@@ -13,6 +13,9 @@
   },
   "homepage": "https://github.com/noms-digital-studio/slackhook#readme",
   "dependencies": {
+    "adal-node": "^0.1.22",
+    "azure-keyvault": "^2.0.1-preview",
+    "basic-auth": "^1.1.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "morgan": "^1.8.2",
