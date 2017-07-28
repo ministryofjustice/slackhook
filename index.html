@@ -66,6 +66,7 @@ function send(path, body) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
+        credentials: 'same-origin',
     });
 }
 </script>
