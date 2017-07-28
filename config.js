@@ -14,7 +14,7 @@ function getenv(name, fallback) {
   if (name in process.env && process.env[name]) {
     return process.env[name];
   }
-  if (fallback) {
+  if (fallback !== undefined) {
     return fallback;
   }
   throw new Error(`Missing ${name} environment variable`);
