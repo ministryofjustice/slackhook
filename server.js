@@ -1,3 +1,5 @@
+require('./azure-applicationinsights');
+
 const http = require("http");
 
 const config = require("./config");
