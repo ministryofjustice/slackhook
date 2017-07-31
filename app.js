@@ -21,12 +21,20 @@ app.get("/", (req, res) => {
 });
 
 app.post("/kudu", (req, res, next) => {
+  const channel = coerceChannel(req.query.channel);
   const postDetails = Object.assign(
-    { channel: req.query.channel },
+    { channel },
     kudu.parse(req.body)
   );
   slack.post(postDetails).then(() => res.json({ ok: true })).catch(next);
 });
+
+function coerceChannel(channel) {
+  if (channel[0] != "#") {
+    return "#" + channel;
+  }
+  return channel;
+}
 
 app.use((req, res) => {
   res.status(404);
