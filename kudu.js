@@ -38,10 +38,9 @@ function getText(payload) {
   const success = isSuccessful(payload);
   const { message, id } = payload;
   return (
-    (success ? "Release complete" : ":warning: Release failed") +
+    (success ? "Success" : ":warning: Failed") +
+    (" `" + id + "`") +
     "\n" +
-    ("`" + id + "`") +
-    "\n" +
-    ("```\n" + message + "\n```")
+    ("```\n" + String(message).trim() + "\n```")
   );
 }
