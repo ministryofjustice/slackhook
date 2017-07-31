@@ -40,14 +40,17 @@ function makeAuthenticator(keyvaultConfig, localUsers) {
 
   return function authenticated({name, pass} = {}) {
     if (!name || !pass) {
+      console.log("Auth header invalid");
       return Promise.resolve(false);
     }
 
     const localResult = checkLocalUser(name, pass);
     if (localResult != null) {
+      console.log("Local user found");
       return Promise.resolve(localResult)
     }
 
+    console.log("checking for %s in keyvault", name);
     return keyvaultAuth.check(name, pass);
   }
 

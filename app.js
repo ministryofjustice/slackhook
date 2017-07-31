@@ -9,7 +9,9 @@ const kudu = require("./kudu");
 
 const app = express();
 
-app.use(morgan("short"));
+app.use(morgan("short", {
+  stream: { write(msg) { console.log(msg.trim()); } }
+}));
 app.use(bodyParser.json());
 
 app.use(authentication(config.keyvault, config.local_users));

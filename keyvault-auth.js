@@ -30,6 +30,7 @@ function createVaultClient(vaultUri, clientId, clientSecret) {
           (secret) => secret.value,
           (err) => {
             if (err.code === 'SecretNotFound') {
+              console.log("%s not found in keyvault", name);
               return null;
             }
             throw err;
